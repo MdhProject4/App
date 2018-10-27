@@ -157,4 +157,31 @@
       <Name>ProjectFlightApp</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\account.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\account%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\account%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\map.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\map%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\map%403x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\search%402x.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\images\ui\search%403x.png" />
+  </ItemGroup>
 </Project>

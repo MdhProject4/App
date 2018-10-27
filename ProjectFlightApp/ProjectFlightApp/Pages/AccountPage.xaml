@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	x:Class="ProjectFlightApp.Pages.AccountPage"
+	Title="Account">
+    <ContentPage.Content>
+		<StackLayout
+	        Margin="32">
+
+			<!-- Title with username -->
+			<Label
+				Text="user"
+				FontAttributes="Bold"
+				FontSize="32"/>
+
+			<!-- Notifications -->
+			<Label
+				Text="Notifications"
+				FontAttributes="Bold"
+				Margin="0, 16, 0, 0"
+				FontSize="16"/>
+
+			<ListView
+				x:Name="ViewNotifications"/>
+
+			<!-- Bookmarks -->
+			<Label
+				Text="Bookmarks"
+				FontAttributes="Bold"
+				Margin="0, 16, 0, 0"
+				FontSize="16"/>
+
+			<ListView
+				x:Name="ViewBookmarks"/>
+
+		</StackLayout>
+    </ContentPage.Content>
+</ContentPage>

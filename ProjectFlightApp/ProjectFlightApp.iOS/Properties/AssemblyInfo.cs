@@ -37,4 +37,4 @@ using Xamarin.Forms.Platform.iOS;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 // Use the new WKWebView (requires iOS 8)
-[assembly: ExportRenderer(typeof(WebView), typeof(WkWebViewRenderer))]
+//[assembly: ExportRenderer(typeof(WebView), typeof(WkWebViewRenderer))]

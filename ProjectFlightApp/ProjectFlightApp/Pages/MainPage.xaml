@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage
+	xmlns="http://xamarin.com/schemas/2014/forms"
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+	xmlns:pages="clr-namespace:ProjectFlightApp.Pages;assembly=ProjectFlightApp"
+	x:Class="ProjectFlightApp.Pages.MainPage">
+
+	<NavigationPage
+		x:Name="PageMap"
+		Title="Map">
+		<x:Arguments>
+			<pages:MapPage/>
+		</x:Arguments>
+	</NavigationPage>
+
+	<NavigationPage
+		x:Name="PageAccount"
+		Title="Account">
+		<x:Arguments>
+			<pages:AccountPage/>
+		</x:Arguments>
+	</NavigationPage>
+
+	<NavigationPage
+		x:Name="PageSearch"
+		Title="Search">
+		<x:Arguments>
+			<pages:SearchPage/>
+		</x:Arguments>
+	</NavigationPage>
+
+</TabbedPage>

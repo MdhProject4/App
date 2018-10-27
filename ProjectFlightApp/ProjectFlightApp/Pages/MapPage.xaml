@@ -2,7 +2,8 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="ProjectFlightApp.MainPage">
+	x:Class="ProjectFlightApp.Pages.MapPage"
+	NavigationPage.HasNavigationBar="False">
 
 	<StackLayout>
 		<WebView

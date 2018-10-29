@@ -1,13 +1,25 @@
 ﻿namespace ProjectFlightApp
 {
-	public class Notification
+	public abstract class Notification
 	{
-		public string Id { get; set; }
+		/// <summary>
+		/// Notification ID
+		/// </summary>
+		public string Id       { get; set; }
 		
+		/// <summary>
+		/// Username the notification belongs to
+		/// </summary>
 		public string Username { get; set; }
 
+		/// <summary>
+		/// Flight being notified about
+		/// </summary>
 		public string FlightId { get; set; }
 
-		public bool Notified;
+		/// <summary>
+		/// If the user has been notified already
+		/// </summary>
+		public bool Notified   { get; set; }
 	}
 }

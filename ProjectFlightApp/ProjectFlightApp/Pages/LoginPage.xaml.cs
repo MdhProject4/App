@@ -44,5 +44,7 @@ namespace ProjectFlightApp.Pages
 				}
 			}
 		}
+
+		private async void ButtonCancel_OnClicked(object sender, EventArgs e) => await Navigation.PopModalAsync();
 	}
 }

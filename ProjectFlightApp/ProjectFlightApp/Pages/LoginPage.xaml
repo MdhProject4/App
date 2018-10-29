@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
 	x:Class="ProjectFlightApp.Pages.LoginPage"
 	NavigationPage.HasNavigationBar="False">
+
 	<ContentPage.Content>
 		<StackLayout
 			Margin="32"
@@ -31,14 +32,26 @@
 				IsPassword="True"
 				TextChanged="Entry_OnTextChanged"/>
 
-			<!-- Login button -->
-			<Button
-				x:Name="ButtonLogin"
+			<!-- Login/cancel buttons -->
+			<StackLayout
 				Margin="0, 16, 0, 0"
-				IsEnabled="False"
-				Text="Login"
-				Clicked="ButtonLogin_OnClicked"/>
+				Orientation="Horizontal"
+				HorizontalOptions="End">
+
+				<Button
+					Text="Cancel"
+					Margin="0, 0, 32, 0"
+					Clicked="ButtonCancel_OnClicked"/>
+
+				<Button
+					x:Name="ButtonLogin"
+					IsEnabled="False"
+					Text="Login"
+					Clicked="ButtonLogin_OnClicked"/>
+
+			</StackLayout>
 
 		</StackLayout>
 	</ContentPage.Content>
+
 </ContentPage>

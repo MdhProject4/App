@@ -2,38 +2,39 @@
 <ContentPage
 	xmlns="http://xamarin.com/schemas/2014/forms"
 	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-	x:Class="ProjectFlightApp.Pages.MainPage"
-	NavigationPage.HasNavigationBar="False">
+	x:Class="ProjectFlightApp.Pages.MainPage">
+	<ContentPage.Content>
 
-	<StackLayout>
+		<StackLayout>
 
-		<StackLayout
-			Margin="16, 0, 16, 0"
-			Orientation="Horizontal">
+			<StackLayout
+				Padding="16, 0, 16, 0"
+				Orientation="Horizontal">
 
-			<Entry
-				x:Name="EntrySearch"
-				HorizontalOptions="FillAndExpand"
+				<Entry
+					x:Name="EntrySearch"
+					HorizontalOptions="FillAndExpand"
+					VerticalOptions="FillAndExpand"
+					Placeholder="Search for a plane"
+					Completed="EntrySearch_OnCompleted"/>
+
+				<Image
+					Margin="16, 0, 0, 0"
+					Source="images/ui/account.png">
+					<Image.GestureRecognizers>
+						<TapGestureRecognizer Tapped="ButtonAccount_OnTapped"/>
+					</Image.GestureRecognizers>
+				</Image>
+
+			</StackLayout>
+
+			<WebView
+				x:Name="WebViewMap"
 				VerticalOptions="FillAndExpand"
-				Placeholder="Search for a plane"
-				Completed="EntrySearch_OnCompleted"/>
-
-			<Image
-				Margin="16, 0, 0, 0"
-				Source="images/ui/account.png">
-				<Image.GestureRecognizers>
-					<TapGestureRecognizer Tapped="ButtonAccount_OnTapped"/>
-				</Image.GestureRecognizers>
-			</Image>
+				HorizontalOptions="FillAndExpand"
+				Source="http://web.kraxarn.com:5000"/>
 
 		</StackLayout>
 
-		<WebView
-			x:Name="WebViewMap"
-			VerticalOptions="FillAndExpand"
-			HorizontalOptions="FillAndExpand"
-			Source="http://web.kraxarn.com:5000"/>
-
-	</StackLayout>
-
+	</ContentPage.Content>
 </ContentPage>

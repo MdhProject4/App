@@ -1,12 +1,10 @@
-﻿using System;
-using ProjectFlightApp.Pages;
-using Xamarin.Forms;
+﻿using ProjectFlightApp.Pages;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace ProjectFlightApp
 {
-	public partial class App : Application
+	public partial class App
 	{
 		public App()
 		{

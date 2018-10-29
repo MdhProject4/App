@@ -1,67 +1,77 @@
 ﻿using System;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
 using System.Net.WebSockets;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace ProjectFlightApp
 {
-	public class WebSocketManager : INotifyPropertyChanged
+	public class WebSocketManager : IDisposable
 	{
+		/// <summary>
+		/// Main client
+		/// </summary>
 		private readonly ClientWebSocket client;
+
+		/// <summary>
+		/// Probably not needed
+		/// </summary>
 		private readonly CancellationTokenSource cts;
 
+		/// <summary>
+		/// If we're connected to the server
+		/// </summary>
 		public bool Connected => client.State == WebSocketState.Open;
+
+		/// <summary>
+		/// If the main 'wait for server' loop should be running
+		/// </summary>
+		private bool running;
 
 		public WebSocketManager(Uri uri)
 		{
 			client = new ClientWebSocket();
 			cts = new CancellationTokenSource();
+			running = true;
 
 			ConnectAsync(uri);
 		}
 
 		private async void ConnectAsync(Uri uri)
 		{
+			// Connect
 			await client.ConnectAsync(uri, cts.Token);
 
-			UpdateState();
+			// Send message so we're added to the server
+			// TODO: We probably want to send the username
+			Send("HI");
 
-			await Task.Factory.StartNew(async () =>
+			// Continue listening for the server
+			await Task.Run(async () =>
 			{
-				while (true)
+				// Buffer for responses
+				var buffer = new byte[16];
+
+				// Temporary variable to get result
+				WebSocketReceiveResult result = null;
+
+				while (running)
 				{
-					WebSocketReceiveResult result;
-					var message = new ArraySegment<byte>(new byte[4096]);
-					do
-					{
-						result = await client.ReceiveAsync(message, cts.Token);
-						var bytes = message.Skip(message.Offset).Take(result.Count).ToArray();
-						var messageString = Encoding.UTF8.GetString(bytes);
+					// Wait for server to send something
+					result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
 
-						Debug.WriteLine($"Message: {messageString}"); // TODO
-
-					} while (!result.EndOfMessage);
+					// TODO: Use buffer to determine what was received
 				}
-			}, cts.Token, TaskCreationOptions.LongRunning, TaskScheduler.Default);
+
+				// Send close to server
+				if (result?.CloseStatus != null)
+					await client.CloseAsync(result.CloseStatus.Value, result.CloseStatusDescription, cts.Token);
+			});
 		}
 
-		public async void Send(string message) => 
-			await client.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(message)), WebSocketMessageType.Text, true, cts.Token);
+		private async void Send(string message) => 
+			await client.SendAsync(new ArraySegment<byte>(Encoding.ASCII.GetBytes(message)), WebSocketMessageType.Text, true, cts.Token);
 
-		private void UpdateState()
-		{
-			OnPropertyChanged(nameof(Connected));
-			Debug.WriteLine($"WebSocket State: {client.State}");
-		}
-
-		public event PropertyChangedEventHandler PropertyChanged;
-
-		private void OnPropertyChanged([CallerMemberName] string propertyName = null) => 
-			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		public void Dispose() => running = false;
 	}
 }

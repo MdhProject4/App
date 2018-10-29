@@ -20,5 +20,15 @@ namespace ProjectFlightApp.Pages
 			else
 				await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
 		}
+
+		/// <summary>
+		/// Moves map to plane
+		/// </summary>
+		/// <param name="id"></param>
+		public async void ToPlane(string id) => 
+			await WebViewMap.EvaluateJavaScriptAsync($"getFlight('{id}')");
+
+		private void EntrySearch_OnCompleted(object sender, EventArgs e) => 
+			ToPlane(EntrySearch.Text.Trim());
 	}
 }

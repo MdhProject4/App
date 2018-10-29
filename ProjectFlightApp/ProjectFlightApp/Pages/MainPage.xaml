@@ -15,7 +15,8 @@
 				x:Name="EntrySearch"
 				HorizontalOptions="FillAndExpand"
 				VerticalOptions="FillAndExpand"
-				Placeholder="Search for a plane"/>
+				Placeholder="Search for a plane"
+				Completed="EntrySearch_OnCompleted"/>
 
 			<Image
 				Margin="16, 0, 0, 0"

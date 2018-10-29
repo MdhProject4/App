@@ -6,6 +6,8 @@
 	public struct JsonResult
 	{
 		public bool Error;
+
+		public override string ToString() => $"Error: {Error}";
 	}
 
 	/// <summary>
@@ -15,5 +17,7 @@
 	{
 		public bool   Error;
 		public string User;
+
+		public override string ToString() => $"Error: {Error}, User: {User}";
 	}
 }

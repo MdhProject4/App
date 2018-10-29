@@ -61,7 +61,7 @@ namespace ProjectFlightApp
 					return _cookies;
 
 				// Get from properties and set private username
-				if (Properties.ContainsKey("cookies"))
+				if (Properties.ContainsKey("cookie"))
 				{
 					// TODO: Not sure if this works
 					var cookie = Properties["cookie"] as string;

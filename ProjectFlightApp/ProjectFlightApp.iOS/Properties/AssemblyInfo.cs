@@ -1,7 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using Xamarin.Forms;
-using Xamarin.Forms.Platform.iOS;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
@@ -35,6 +33,3 @@ using Xamarin.Forms.Platform.iOS;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-// Use the new WKWebView (requires iOS 8)
-//[assembly: ExportRenderer(typeof(WebView), typeof(WkWebViewRenderer))]

@@ -1,6 +1,6 @@
 ﻿namespace ProjectFlightApp
 {
-	public abstract class Notification
+	public class Notification
 	{
 		/// <summary>
 		/// Notification ID

@@ -16,7 +16,8 @@
 				FontSize="16"/>
 
 			<Entry
-				x:Name="EntryUsername"/>
+				x:Name="EntryUsername"
+				TextChanged="Entry_OnTextChanged"/>
 
 			<!-- Password -->
 			<Label
@@ -27,13 +28,16 @@
 
 			<Entry
 				x:Name="EntryPassword"
-				IsPassword="True"/>
+				IsPassword="True"
+				TextChanged="Entry_OnTextChanged"/>
 
 			<!-- Login button -->
 			<Button
+				x:Name="ButtonLogin"
 				Margin="0, 16, 0, 0"
 				IsEnabled="False"
-				Text="Login"/>
+				Text="Login"
+				Clicked="ButtonLogin_OnClicked"/>
 
 		</StackLayout>
 	</ContentPage.Content>

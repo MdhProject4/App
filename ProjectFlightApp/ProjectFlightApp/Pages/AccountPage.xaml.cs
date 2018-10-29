@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace ProjectFlightApp.Pages
@@ -11,12 +12,22 @@ namespace ProjectFlightApp.Pages
 			InitializeComponent();
 		}
 
-		protected override async void OnAppearing()
+		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 
-			// TODO: Temporarily always show login page
-			await Navigation.PushAsync(new NavigationPage(new LoginPage()));
+			// Set values on page
+			LabelUsername.Text = $"{Account.Username} ({Account.Cookie})";
 		}
+
+		private async void ButtonTestLogin_OnClicked(object sender, EventArgs e)
+		{
+			var response = Account.Request("user");
+
+			await DisplayAlert("Login", response, "Dismiss");
+		}
+
+		private async void ButtonSwitchAccount_OnClicked(object sender, EventArgs e) => 
+			await Navigation.PushAsync(new NavigationPage(new LoginPage()));
 	}
 }

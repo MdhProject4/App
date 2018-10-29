@@ -1,4 +1,5 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using Xamarin.Forms;
 
 namespace ProjectFlightApp.Pages
 {
@@ -8,13 +9,16 @@ namespace ProjectFlightApp.Pages
 		{
 			InitializeComponent();
 
-			// Add tab icons on iOS
-			if (Device.RuntimePlatform == Device.iOS)
-			{
-				PageMap.Icon     = "images/ui/map.png";
-				PageAccount.Icon = "images/ui/account.png";
-				PageSearch.Icon  = "images/ui/search.png";
-			}
+			// Hide the default UI once the page is loaded
+			WebViewMap.Navigated += async (sender, args) => { await WebViewMap.EvaluateJavaScriptAsync("hideUi()"); };
+		}
+
+		private async void ButtonAccount_OnTapped(object sender, EventArgs e)
+		{
+			if (Account.IsSignedIn)
+				await Navigation.PushModalAsync(new NavigationPage(new AccountPage()));
+			else
+				await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
 		}
 	}
 }

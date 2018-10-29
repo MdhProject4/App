@@ -10,9 +10,18 @@
 
 			<!-- Title with username -->
 			<Label
+				x:Name="LabelUsername"
 				Text="user"
 				FontAttributes="Bold"
 				FontSize="32"/>
+
+			<Button
+				Text="Test Login"
+				Clicked="ButtonTestLogin_OnClicked"/>
+
+			<Button
+				Text="Switch Account"
+				Clicked="ButtonSwitchAccount_OnClicked"/>
 
 			<!-- Notifications -->
 			<Label

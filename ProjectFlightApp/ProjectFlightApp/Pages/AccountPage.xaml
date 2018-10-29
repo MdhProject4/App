@@ -43,6 +43,11 @@
 			<ListView
 				x:Name="ViewBookmarks"/>
 
+			<!-- Back button -->
+			<Button
+				Text="Back"
+				Clicked="ButtonBack_OnClicked"/>
+
 		</StackLayout>
     </ContentPage.Content>
 </ContentPage>

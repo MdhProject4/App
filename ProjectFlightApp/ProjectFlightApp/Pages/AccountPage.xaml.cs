@@ -17,7 +17,7 @@ namespace ProjectFlightApp.Pages
 			base.OnAppearing();
 
 			// Set values on page
-			LabelUsername.Text = $"{Account.Username} ({Account.Cookie})";
+			LabelUsername.Text = $"Welcome {Account.Username}!";
 		}
 
 		private async void ButtonTestLogin_OnClicked(object sender, EventArgs e)
@@ -29,5 +29,7 @@ namespace ProjectFlightApp.Pages
 
 		private async void ButtonSwitchAccount_OnClicked(object sender, EventArgs e) => 
 			await Navigation.PushAsync(new NavigationPage(new LoginPage()));
+
+		private void ButtonBack_OnClicked(object sender, EventArgs e) => Navigation.PopModalAsync();
 	}
 }

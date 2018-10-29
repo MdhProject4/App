@@ -31,7 +31,18 @@
 				FontSize="16"/>
 
 			<ListView
-				x:Name="ViewNotifications"/>
+				x:Name="ViewNotifications">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+						<ImageCell
+							Text="{Binding FlightId}"
+							Detail="{Binding Id}"
+							ImageSource="image/ui/plane-landing.png"/>
+						<!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 
 			<!-- Bookmarks -->
 			<Label

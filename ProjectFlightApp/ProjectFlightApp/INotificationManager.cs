@@ -5,8 +5,7 @@
 		/// <summary>
 		/// Request notifications permission
 		/// </summary>
-		/// <returns>If the request was accepted</returns>
-		bool RequestPermission();
+		void RequestPermission();
 
 		/// <summary>
 		/// Sends a notification to the device

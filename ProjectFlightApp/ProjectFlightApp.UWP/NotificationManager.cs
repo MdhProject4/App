@@ -7,7 +7,7 @@ namespace ProjectFlightApp.UWP
 	public class NotificationManager : INotificationManager
 	{
 		// UWP requires no special permission
-		public bool RequestPermission() => true;
+		public void RequestPermission() { }
 
 		public void Send(string message)
 		{

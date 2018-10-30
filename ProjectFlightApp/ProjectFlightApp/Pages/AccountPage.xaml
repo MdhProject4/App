@@ -33,7 +33,7 @@
 						<!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
 						<ImageCell
 							Text="{Binding FlightId}"
-							Detail="{Binding Id}"
+							Detail="{Binding Details}"
 							ImageSource="{Binding Icon}"/>
 						<!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
 					</DataTemplate>
@@ -48,7 +48,17 @@
 				FontSize="16"/>
 
 			<ListView
-				x:Name="ViewBookmarks"/>
+				x:Name="ViewBookmarks">
+				<ListView.ItemTemplate>
+					<DataTemplate>
+						<!-- ReSharper disable Xaml.BindingWithContextNotResolved -->
+						<ImageCell
+							Text="{Binding SavedId}"
+							ImageSource="{Binding Icon}"/>
+						<!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
+					</DataTemplate>
+				</ListView.ItemTemplate>
+			</ListView>
 
 			<!-- Back button -->
 			<Button

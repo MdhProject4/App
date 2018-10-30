@@ -25,6 +25,11 @@ namespace ProjectFlightApp
 		public bool Notified   { get; set; }
 
 		/// <summary>
+		/// Formats 'Notified' nicer
+		/// </summary>
+		public string Details => $"Notified: {(Notified ? "Yes" : "No")}";
+
+		/// <summary>
 		/// Sort of temporary, all notifications have the same icon
 		/// </summary>
 		public ImageSource Icon => "images/ui/airplane-landing.png";

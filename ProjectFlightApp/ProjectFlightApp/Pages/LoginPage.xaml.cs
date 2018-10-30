@@ -23,7 +23,7 @@ namespace ProjectFlightApp.Pages
 
 			using (var client = new CookieWebClient())
 			{
-				var response = client.DownloadString($"http://web.kraxarn.com:5000/user/login?username={username}&password={password}");
+				var response = client.DownloadString($"http://localhost:5000/user/login?username={username}&password={password}");
 				var json = JsonConvert.DeserializeObject<JsonResult>(response);
 
 				if (json.Error)

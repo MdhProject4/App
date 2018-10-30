@@ -42,7 +42,7 @@ namespace ProjectFlightApp.Pages
 			if (WebSocket == null && Account.IsSignedIn)
 			{
 				if (DependencyService.Get<INotificationManager>().RequestPermission())
-					WebSocket = new WebSocketManager(new Uri("ws://localhost:5000/ws"));
+					WebSocket = new WebSocketManager(new Uri("ws://web.kraxarn.com:5000/ws"));
 				else
 					await DisplayAlert("Oh no!", "Notifications are required for, well, plane notifications", "oh lol");
 			}

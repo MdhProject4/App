@@ -96,7 +96,7 @@ namespace ProjectFlightApp
 							};
 
 							// Start download in background
-							webClient.DownloadStringAsync(new Uri($"http://localhost:5000/api/getFlight/{response}"));
+							webClient.DownloadStringAsync(new Uri($"http://web.kraxarn.com:5000/api/getFlight/{response}"));
 						}
 					}
 				}

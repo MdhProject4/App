@@ -66,7 +66,7 @@ namespace ProjectFlightApp
 					// TODO: Not sure if this works
 					var cookie = Properties["cookie"] as string;
 					_cookies = new CookieContainer();
-					_cookies.Add(new Uri("http://web.kraxarn.com:5000"), new Cookie(".AspNetCore.Cookies", cookie));
+					_cookies.Add(new Uri("http://localhost:5000"), new Cookie(".AspNetCore.Cookies", cookie));
 
 					return _cookies;
 				}
@@ -98,7 +98,7 @@ namespace ProjectFlightApp
 		/// <summary>
 		/// Shorthand for getting the only cookie we use atm
 		/// </summary>
-		public static string Cookie => Cookies?.GetCookies(new Uri("http://web.kraxarn.com:5000"))[0].Value;
+		public static string Cookie => Cookies?.GetCookies(new Uri("http://localhost:5000"))[0].Value;
 
 		#endregion
 
@@ -117,7 +117,7 @@ namespace ProjectFlightApp
 			using (var client = new WebClient())
 			{
 				client.Headers.Add(HttpRequestHeader.Cookie, $".AspNetCore.Cookies={Cookie}");
-				return client.DownloadString($"http://web.kraxarn.com:5000/{path}");
+				return client.DownloadString($"http://localhost:5000/{path}");
 			}
 		}
 	}

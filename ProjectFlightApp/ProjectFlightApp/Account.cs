@@ -80,7 +80,7 @@ namespace ProjectFlightApp
 				// Set private variable
 				_cookies = value;
 
-				// TODO: Not sure if this works (No, it's null)
+				// Save to file
 				Properties["cookie"] = Cookie;
 			}
 		}

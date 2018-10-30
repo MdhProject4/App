@@ -7,17 +7,13 @@ namespace ProjectFlightApp.Pages
 	{
 		public WebSocketManager WebSocket;
 
-		private INotificationManager notificationManager;
-
 		public MainPage()
 		{
+			// Load main layout
 			InitializeComponent();
 
 			// Hide the default UI once the page is loaded
 			WebViewMap.Navigated += async (sender, args) => { await WebViewMap.EvaluateJavaScriptAsync("hideUi()"); };
-
-			// Create notification manager
-			notificationManager = DependencyService.Get<INotificationManager>();
 		}
 
 		private async void ButtonAccount_OnTapped(object sender, EventArgs e)

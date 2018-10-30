@@ -34,17 +34,15 @@ namespace ProjectFlightApp.Pages
 		private void EntrySearch_OnCompleted(object sender, EventArgs e) => 
 			ToPlane(EntrySearch.Text.Trim());
 
-		protected override async void OnAppearing()
+		protected override void OnAppearing()
 		{
 			base.OnAppearing();
 
 			// If not already connected and signed in, try to connect to web socket server
 			if (WebSocket == null && Account.IsSignedIn)
 			{
-				if (DependencyService.Get<INotificationManager>().RequestPermission())
-					WebSocket = new WebSocketManager(new Uri("ws://web.kraxarn.com:5000/ws"));
-				else
-					await DisplayAlert("Oh no!", "Notifications are required for, well, plane notifications", "oh lol");
+				DependencyService.Get<INotificationManager>().RequestPermission();
+				WebSocket = new WebSocketManager(new Uri("ws://web.kraxarn.com:5000/ws"));
 			}
 		}
 	}

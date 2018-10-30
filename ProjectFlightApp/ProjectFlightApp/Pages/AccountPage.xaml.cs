@@ -9,7 +9,16 @@ namespace ProjectFlightApp.Pages
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class AccountPage
 	{
-		public AccountPage() => InitializeComponent();
+		public AccountPage(MainPage main)
+		{
+			InitializeComponent();
+
+			ViewNotifications.ItemSelected += async (sender, args) =>
+			{
+				await Navigation.PopModalAsync();
+				main.ToPlane(((Notification) ViewNotifications.SelectedItem).FlightId);
+			};
+		}
 
 		/// <summary>
 		/// Notifications shown in the notifications view

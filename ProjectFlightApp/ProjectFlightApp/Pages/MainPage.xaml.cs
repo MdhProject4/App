@@ -19,7 +19,7 @@ namespace ProjectFlightApp.Pages
 		private async void ButtonAccount_OnTapped(object sender, EventArgs e)
 		{
 			if (Account.IsSignedIn)
-				await Navigation.PushModalAsync(new NavigationPage(new AccountPage()));
+				await Navigation.PushModalAsync(new NavigationPage(new AccountPage(this)));
 			else
 				await Navigation.PushModalAsync(new NavigationPage(new LoginPage()));
 		}

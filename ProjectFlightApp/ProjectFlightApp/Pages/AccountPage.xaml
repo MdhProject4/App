@@ -16,10 +16,6 @@
 				FontSize="32"/>
 
 			<Button
-				Text="Test Login"
-				Clicked="ButtonTestLogin_OnClicked"/>
-
-			<Button
 				Text="Switch Account"
 				Clicked="ButtonSwitchAccount_OnClicked"/>
 

@@ -31,13 +31,6 @@ namespace ProjectFlightApp.Pages
 			ViewNotifications.ItemsSource = notifications;
 		}
 
-		private async void ButtonTestLogin_OnClicked(object sender, EventArgs e)
-		{
-			var response = JsonConvert.DeserializeObject<JsonUserResult>(Account.Request("user"));
-
-			await DisplayAlert("Login", $"{response}", "Dismiss");
-		}
-
 		private async void ButtonSwitchAccount_OnClicked(object sender, EventArgs e) => 
 			await Navigation.PushAsync(new NavigationPage(new LoginPage()));
 

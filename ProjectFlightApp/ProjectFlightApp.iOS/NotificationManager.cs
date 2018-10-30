@@ -1,5 +1,4 @@
-﻿using System;
-using ProjectFlightApp.iOS;
+﻿using ProjectFlightApp.iOS;
 using UserNotifications;
 
 [assembly: Xamarin.Forms.Dependency(typeof(NotificationManager))]
@@ -7,36 +6,28 @@ namespace ProjectFlightApp.iOS
 {
 	public class NotificationManager : INotificationManager
 	{
-		public bool RequestPermission()
+		public void RequestPermission()
 		{
-			// Temporary variable
-			var accepted = false;
-
 			// Request permission
-			UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => accepted = true);
+			UNUserNotificationCenter.Current.RequestAuthorization(UNAuthorizationOptions.Alert, (approved, err) => {});
 
-			// Return response
-			return accepted;
+			// Watch for notifications while the app is open
+			UNUserNotificationCenter.Current.Delegate = new UserNotificationCenterDelegate();
 		}
 
 		public void Send(string message)
 		{
 			var content = new UNMutableNotificationContent
 			{
-				Title = "title",
-				Subtitle = "subtitle",
-				Body = message
+				Title = "Incoming Flight!",
+				Body  = message,
+				Sound = UNNotificationSound.Default
 			};
 
 			var trigger = UNTimeIntervalNotificationTrigger.CreateTrigger(5, false);
-
 			var request = UNNotificationRequest.FromIdentifier("request0", content, trigger);
 
-			UNUserNotificationCenter.Current.AddNotificationRequest(request, err =>
-			{
-				if (err != null)
-					throw new InvalidOperationException($"Failed to send notification: {err}");
-			});
+			UNUserNotificationCenter.Current.AddNotificationRequest(request, err => { });
 		}
 	}
 }

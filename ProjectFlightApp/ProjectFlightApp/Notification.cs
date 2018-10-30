@@ -1,4 +1,6 @@
-﻿namespace ProjectFlightApp
+﻿using Xamarin.Forms;
+
+namespace ProjectFlightApp
 {
 	public class Notification
 	{
@@ -21,5 +23,10 @@
 		/// If the user has been notified already
 		/// </summary>
 		public bool Notified   { get; set; }
+
+		/// <summary>
+		/// Sort of temporary, all notifications have the same icon
+		/// </summary>
+		public ImageSource Icon => "images/ui/airplane-landing.png";
 	}
 }

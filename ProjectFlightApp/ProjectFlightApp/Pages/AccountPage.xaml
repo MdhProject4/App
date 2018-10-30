@@ -34,7 +34,7 @@
 						<ImageCell
 							Text="{Binding FlightId}"
 							Detail="{Binding Id}"
-							ImageSource="image/ui/plane-landing.png"/>
+							ImageSource="image/ui/airplane-landing.png"/>
 						<!-- ReSharper restore Xaml.BindingWithContextNotResolved -->
 					</DataTemplate>
 				</ListView.ItemTemplate>

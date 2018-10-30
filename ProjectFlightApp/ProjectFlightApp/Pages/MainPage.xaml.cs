@@ -7,6 +7,8 @@ namespace ProjectFlightApp.Pages
 	{
 		public WebSocketManager WebSocket;
 
+		private INotificationManager notificationManager;
+
 		public MainPage()
 		{
 			InitializeComponent();
@@ -14,9 +16,8 @@ namespace ProjectFlightApp.Pages
 			// Hide the default UI once the page is loaded
 			WebViewMap.Navigated += async (sender, args) => { await WebViewMap.EvaluateJavaScriptAsync("hideUi()"); };
 
-			// Try and connect to server
-			if (Account.IsSignedIn)
-				WebSocket = new WebSocketManager(new Uri("ws://localhost:5000/ws"));
+			// Create notification manager
+			notificationManager = DependencyService.Get<INotificationManager>();
 		}
 
 		private async void ButtonAccount_OnTapped(object sender, EventArgs e)
@@ -36,5 +37,19 @@ namespace ProjectFlightApp.Pages
 
 		private void EntrySearch_OnCompleted(object sender, EventArgs e) => 
 			ToPlane(EntrySearch.Text.Trim());
+
+		protected override async void OnAppearing()
+		{
+			base.OnAppearing();
+
+			// If not already connected and signed in, try to connect to web socket server
+			if (WebSocket == null && Account.IsSignedIn)
+			{
+				if (DependencyService.Get<INotificationManager>().RequestPermission())
+					WebSocket = new WebSocketManager(new Uri("ws://localhost:5000/ws"));
+				else
+					await DisplayAlert("Oh no!", "Notifications are required for, well, plane notifications", "oh lol");
+			}
+		}
 	}
 }

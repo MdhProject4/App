@@ -20,4 +20,13 @@
 
 		public override string ToString() => $"Error: {Error}, User: {User}";
 	}
+
+	/// <summary>
+	/// Response from /api/getFlight
+	/// </summary>
+	public struct JsonFlightInfoResult
+	{
+		public bool Error;
+		public FlightInfo Info;
+	}
 }

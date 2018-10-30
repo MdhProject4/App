@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Xamarin.Forms;
 
 namespace ProjectFlightApp
@@ -34,7 +34,7 @@ namespace ProjectFlightApp
 		/// <summary>
 		/// Notification manager to send local notifications
 		/// </summary>
-		private INotificationManager notificationManager;
+		private readonly INotificationManager notificationManager;
 
 		public WebSocketManager(Uri uri)
 		{
@@ -74,7 +74,7 @@ namespace ProjectFlightApp
 					result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
 
 					// Get response string
-					var response = Encoding.ASCII.GetString(buffer);
+					var response = Encoding.ASCII.GetString(buffer).TrimEnd('\0');
 
 					// Check so it's an actual plane notification
 					if (!response.StartsWith("OK") && !response.StartsWith("ERR"))

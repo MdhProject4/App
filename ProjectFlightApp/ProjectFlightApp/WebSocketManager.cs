@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Xamarin.Forms;
 
 namespace ProjectFlightApp
 {
@@ -28,11 +31,18 @@ namespace ProjectFlightApp
 		/// </summary>
 		private bool running;
 
+		/// <summary>
+		/// Notification manager to send local notifications
+		/// </summary>
+		private INotificationManager notificationManager;
+
 		public WebSocketManager(Uri uri)
 		{
-			client = new ClientWebSocket();
-			cts = new CancellationTokenSource();
+			client  = new ClientWebSocket();
+			cts     = new CancellationTokenSource();
 			running = true;
+
+			notificationManager = DependencyService.Get<INotificationManager>();
 
 			ConnectAsync(uri);
 		}
@@ -63,7 +73,32 @@ namespace ProjectFlightApp
 					// Wait for server to send something
 					result = await client.ReceiveAsync(new ArraySegment<byte>(buffer), cts.Token);
 
-					// TODO: Use buffer to determine what was received
+					// Get response string
+					var response = Encoding.ASCII.GetString(buffer);
+
+					// Check so it's an actual plane notification
+					if (!response.StartsWith("OK") && !response.StartsWith("ERR"))
+					{
+						using (var webClient = new WebClient())
+						{
+							// When download finished
+							webClient.DownloadStringCompleted += (sender, args) =>
+							{
+								// Parse response
+								var info = JsonConvert.DeserializeObject<JsonFlightInfoResult>(args.Result).Info;
+
+								// Basic error checking
+								if (info == null)
+									return;
+
+								// Send notification
+								notificationManager.Send($"Plane {info.Id} from {info.DepartureCountry} should land in {info.DestinationCountry} in about an hour");
+							};
+
+							// Start download in background
+							webClient.DownloadStringAsync(new Uri($"http://localhost:5000/api/getFlight/{response}"));
+						}
+					}
 				}
 
 				// Send close to server

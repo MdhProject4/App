@@ -39,6 +39,9 @@ namespace ProjectFlightApp
 
 		private async void ConnectAsync(Uri uri)
 		{
+			// Add cookies from account
+			client.Options.Cookies = Account.Cookies;
+
 			// Connect
 			await client.ConnectAsync(uri, cts.Token);
 

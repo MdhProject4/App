@@ -20,7 +20,8 @@
 
 				<Image
 					Margin="16, 0, 0, 0"
-					Source="images/ui/account.png">
+					Source="images/ui/account.png"
+					HeightRequest="32">
 					<Image.GestureRecognizers>
 						<TapGestureRecognizer Tapped="ButtonAccount_OnTapped"/>
 					</Image.GestureRecognizers>

@@ -13,10 +13,18 @@ namespace ProjectFlightApp.Pages
 		{
 			InitializeComponent();
 
+			// Focus plane when clicking on notification
 			ViewNotifications.ItemSelected += async (sender, args) =>
 			{
 				await Navigation.PopModalAsync();
 				main.ToPlane(((Notification) ViewNotifications.SelectedItem).FlightId);
+			};
+
+			// Focus plane when clicking on bookmark
+			ViewBookmarks.ItemSelected += async (sender, args) =>
+			{
+				await Navigation.PopModalAsync();
+				main.ToPlane(((Bookmark) ViewBookmarks.SelectedItem).SavedId);
 			};
 		}
 
